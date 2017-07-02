@@ -1,0 +1,258 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Freemed-EMR</title>
+    <link href="/src/vscode.ico" rel="shortcut icon">
+    <link href="/src/dist/main.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="row">
+                <a href="/index.html"><img src="/src/resources/img/freemed_logo_eng.png"  alt="freemed image" class="logo">
+                   </a>
+                <ul class="main-nav">
+                    <li><a href="/src/views/receipt.html">접수</a></li>
+                    <li><a href="/src/views/ocs.html">OCS</a></li>
+                    <li><a href="/src/views/check.html">예진</a></li>
+                    <li><a href="/src/views/main.html">본진</a></li>
+                    <li><a href="/src/views/pharmacy.html">약국</a></li>
+                    <li><a href="/src/views/management.html">약국 재고 관리</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <section class="section-receipt">
+        <div class="row main-receipt">
+            <div class="col span-3-of-4">
+                <h2>접수</h2>
+            </div>
+            <div class="col span-1-of-4" id="patients">
+                <input class="search__input" type="text" placeholder="환자 조회">
+                <ul class="list">
+                </ul>
+            </div>
+
+        </div>
+        <!-- 기본 신상 -->
+        <div class="row">
+            <h3>기본 신상</h3>
+        </div>
+        <div class="row">
+            <form action="#" method="POST" class="receipt-form">
+                <div class="row bottom">
+                    <div class="col span-1-of-3">
+                        <label for="visit">첫 방문일</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <div class="receipt-visit">
+                            <p class="visit-year"></p>년
+                            <p class="visit-month"></p>월
+                            <p class="visit-day"></p>일
+                        </div>
+                    </div>
+                </div>
+                <div class="row bottom">
+                    <div class="col span-1-of-2">
+                        <div class="col span-1-of-3">
+                            <label for="name">이름</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="name" id="name" placeholder="이름을 입력하세요." required>
+                        </div>
+                    </div>
+                    <div class="col span-1-of-2">
+                        <div class="col span-1-of-3">
+                            <label for="gender">성별</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="radio" name="gender" value="man" checked="checked">남
+                            <input type="radio" name="gender" value="girl">여
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row bottom">
+                    <div class="col span-1-of-2">
+                        <div class="col span-1-of-3">
+                            <label for="birth">생년월일</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="birth" id="birth" placeholder="연도. 월. 일." required>
+                        </div>
+                    </div>
+                    <div class="col span-1-of-2">
+                        <div class="col span-1-of-3">
+                            <label for="marriage">결혼유무</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="radio" name="marriage" value="single" checked="checked">미혼
+                            <input type="radio" name="marriage" value="married">기혼
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <div class="col span-1-of-3">
+                            <label for="kidney">신장</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="kidney" id="kidney" placeholder="신장을 입력하세요." required>
+                        </div>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <div class="col span-1-of-3">
+                            <label for="weight">몸무게</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="weight" id="weight" placeholder="몸무게를 입력하세요." required>
+                        </div>
+                    </div>
+
+                    <div class="col span-1-of-3">
+                        <div class="col span-1-of-3">
+                            <label for="bmi">BMI</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="bmi" id="bmi" placeholder="BMI를 입력하세요." required>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- 과거력 -->
+        <div class="row">
+            <h3>과거력(Past history)</h3>
+            <form action="#" method="POST" class="receipt-form">
+                <div class="row">
+                    <div class="col span-1-of-12">
+                        <label for="disease">질병</label>
+                    </div>
+                    <div class="col span-11-of-12">
+                        <input type="checkbox" name="disease" value="고혈압">고혈압
+                        <input type="checkbox" name="disease" value="당뇨">당뇨
+                        <input type="checkbox" name="disease" value="A형간염">A형 간염
+                        <input type="checkbox" name="disease" value="B형간염">B형 간염
+                        <input type="checkbox" name="disease" value="C형간염">C형 간염
+                        <input type="checkbox" name="disease" value="결핵">결핵
+                        <input type="checkbox" name="disease" value="신질환">신질환
+                        <input type="checkbox" name="disease" value="종양">종양
+                        <input type="checkbox" name="disease" value="감염성 질환">감염성 질환
+                        <input type="checkbox" name="disease" value="성병">성병
+                    </div>
+                </div>
+                <div class="row bottom">
+                    <div class="col span-1-of-3">
+                        <label for="re-disease">비고</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input type="text" class="form-remarks" name="re-disease" id="re-disease" required>
+                        <button class="btn btn-full">입력</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col span-1-of-12">
+                        <label for="allergy">알레르기</label>
+                    </div>
+                    <div class="col span-11-of-12">
+                        <input type="checkbox" name="allergy" value="음식">음식
+                        <input type="checkbox" name="allergy" value="당뇨">당뇨
+                        <input type="checkbox" name="allergy" value="약물">약물
+                        <input type="checkbox" name="allergy" value="물질">물질
+                        <input type="checkbox" name="allergy" value="기타">기타
+                    </div>
+                </div>
+
+                <div class="row bottom">
+                    <div class="col span-1-of-3">
+                        <label for="re-allergy">비고</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input type="text" class="form-remarks" name="re-allergy" id="re-allergy" required>
+                        <button class="btn btn-full">입력</button>
+                    </div>
+                </div>
+
+                <!--입원 상해-->
+                <div class="row">
+                    <div class="col span-2-of-12">
+                        <label for="history">입원, 상해 및 수술력</label>
+                    </div>
+                    <div class="col span-10-of-12">
+                        <input type="radio" name="history" value="no" checked="checked">없음
+                        <input type="radio" name="history" value="yes">있음
+                    </div>
+                </div>
+
+                <div class="row bottom">
+                    <div class="col span-5-of-12">
+                        <div class="col span-1-of-10">
+                            <label for="history">시기</label>
+                        </div>
+                        <div class="col span-9-of-10">
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="col span-5-of-12">
+                        <div class="col span-1-of-10">
+                            <label for="history">부위</label>
+                        </div>
+                        <div class="col span-9-of-10">
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="col span-2-of-12">
+                        <button class="btn btn-full history">입력</button>
+                    </div>
+                </div>
+
+
+                <!--약물 복용-->
+                <div class="row">
+                    <div class="col span-2-of-12">
+                        <label for="taking">약물 복용</label>
+                    </div>
+                    <div class="col span-10-of-12">
+                        <input type="radio" name="taking" value="no" checked="checked">없음
+                        <input type="radio" name="taking" value="yes">있음
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-5-of-12">
+                        <div class="col span-1-of-10">
+                            <label for="history">종류</label>
+                        </div>
+                        <div class="col span-9-of-10">
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="col span-5-of-12">
+                        <div class="col span-1-of-10">
+                            <label for="history">기간</label>
+                        </div>
+                        <div class="col span-9-of-10">
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="col span-2-of-12">
+                        <button class="btn btn-full history">입력</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- 사회력 -->
+        <!--<div class="row">
+            <h3>사회력 (Social history)</h3>
+        </div> -->
+    </section>
+
+    <script src="/src/dist/app.bundle.js"></script>
+</body>
+
+</html>
