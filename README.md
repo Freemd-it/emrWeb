@@ -2,6 +2,7 @@
 
 - 페이지 개발
     -  HTML, CSS , JS 구성
+<hr/>
 
 #### commit
 commit 할 경우 최소 기능 단위로 할 것
@@ -10,6 +11,7 @@ commit 할 경우 최소 기능 단위로 할 것
     * 파일이 변경될 경우 - update : "변경된 내용 적기"
     * 파일이 삭제된 경우 - delete : "삭제된 내용 적기"
 
+<hr/>
 
 #### Branch
 master 
