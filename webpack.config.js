@@ -1,21 +1,24 @@
 const path = require('path');
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin');
-const appPath = path.resolve(__dirname);
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const ROOT = path.resolve(__dirname);
 
 const extractPlugin = new extractTextWebpackPlugin({
     filename: 'main.css'
 })
 
 const config = {
-    context: path.resolve(appPath),
+    context: path.resolve(ROOT),
 
     entry: {
         app: './src/app.js',
+        loader:'./src/loader.js'
     },
 
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(appPath, 'src', 'dist'),
+        path: path.resolve(ROOT, 'src', 'dist'),
         publicPath: '/src/dist/'
     },
 
@@ -35,7 +38,7 @@ const config = {
                 use: extractPlugin.extract({
                     use: ['css-loader', 'sass-loader']
                 })
-            }, 
+            },
             {
                 test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/,
                 loader: 'url-loader?limit=30000&name=[name]-[hash].[ext]'
@@ -47,15 +50,15 @@ const config = {
             {
                 test: /\.jpg/,
                 loader: 'file'
-            }
+            }  
         ]
     },
     plugins: [
-        extractPlugin
+        extractPlugin,
+        new HtmlWebpackPlugin(),
     ],
     devServer: {
-        contentBase: path.join(appPath, 'src'),
-        publicPath: "/dist/",
+        contentBase: path.join(ROOT, 'src'), 
         port: 8080
     }
 }
