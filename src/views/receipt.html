@@ -5,29 +5,193 @@
     <meta charset="utf-8">
     <title>Freemed-EMR</title>
     <link href="/vscode.ico" rel="shortcut icon">
-    <link href="/dist/main.css" rel="stylesheet">
+    <!--<link href="/dist/main.css" rel="stylesheet">-->
+    <link href="../resources/css/jquery.typeahead.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.css" rel="stylesheet">
+
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.js"></script>
     <script src="/dist/loader.bundle.js"></script>
 </head>
 
-<body> 
-    <header class="header"></header>
-    <section class="section-receipt">
-        <div class="row main-receipt">
-            <div class="col span-3-of-4">
-                <h2>접수</h2>
+<body>
+
+    <header class="headerLoad"></header>
+    <section class="ui container" style="margin-top:55px">
+        <div class="ui grid">
+            <div class="left floated six wide column" style="margin-left:.1%">
+                <h1>접수</h1>
             </div>
-            <div class="col span-1-of-4" id="patients">
-                <input class="search__input" type="text" placeholder="환자 조회">
-                <ul class="list">
-                </ul>
+            <div class="right floated six wide column">
+                <form id="form-user_v1" name="form-user_v1">
+                    <div class="typeahead__container">
+                        <div class="typeahead__field">
+                            <span class="typeahead__query">
+                                <input id="input" class="js-typeahead-user_v1" name="user_v1[query]" type="search" placeholder="Search" autocomplete="off">
+                            </span>
+                            <span class="typeahead__button">
+                                <button type="submit">
+                                    <i class="typeahead__search-icon"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="ui clearing divider"></div>
+
+
+        <form id="patient_form" class="ui form container">
+            <div class="ui segment">
+                <h3 class="ui dividing header">기본 신상</h3>
+                <div class="field">
+                    <label>첫 방문일</label>
+                    <div class="field">
+                        <input type="text" id="firstcome" name="firstcome" value="2017년 10월 31일" readonly>
+                    </div>
+                </div>
+                <div class="three fields">
+                    <div class="field">
+                        <label>이름</label>
+                        <input type="text" id="name" name="name" placeholder="이름을 입력하세요.">
+                    </div>
+                    <div class="field">
+                        <label>성별</label>
+                        <select id="gender" name="gender" class="ui dropdown">
+                            <option value="">Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>생년월일</label>
+                        <input type="date" id="birth" name="birth" placeholder="생년월일을 입력하세요.">
+                    </div>
+                </div>
+
+                <div class="three fields">
+                    <div class="field">
+                        <label>신장</label>
+                        <div class="ui right labeled input">
+                        <input type="text" id="height" name="height">
+                        <a  class="ui label">cm</a>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>체중</label>
+                        <div class="ui right labeled input">
+                            <input type="text" id="weight" name="weight">
+                            <a  class="ui label">kg</a>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>BMI</label>
+                        <div class="ui right labeled input">
+                            <input type="text" id="bmi" name="bmi">
+                            <a  class="ui label">체중/키^2</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="three fields">
+                    <div class="field">
+                        <label>흡연량</label>
+                        <div class="ui right labeled input">
+                            <input type="text" name="smoke" placeholder="하루 평균 흡연량을 입력하세요">
+                            <a  class="ui label">갑</a>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>음주량</label>
+                        <div class="ui right labeled input">
+                            <input type="text" name="alcohol" placeholder="1주일 평균 음주량을 입력하세요">
+                            <a  class="ui label">병</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <a class="ui label transition visible" data-value="angular" style="display: inline-block !important;">당뇨<i class="delete icon"></i></a>
+            <div class="ui segment">
+                <h3 class="ui dividing header">과거력</h3>
+                <div class="field">
+                    <label>Card Type</label>
+                    <select name="disease" multiple="" class="ui fluid dropdown">
+                        <option value="">병명</option>
+                        <option value="high">고혈압</option>
+                        <option value="angular">당뇨</option>
+                        <option value="css">A형 간염</option>
+                        <option value="design">B형 간염</option>
+                        <option value="ember">C형 간염</option>
+                        <option value="html">결핵</option>
+                        <option value="ia">심질환</option>
+                        <option value="javascript">신장질환</option>
+                        <option value="mech">종양</option>
+                        <option value="meteor">감염성 질환</option>
+                        <option value="node">성병</option>
+                    </select>
+                </div>
+                <div class="fields">
+                    <div class="seven wide field">
+                        <label>Card Number</label>
+                        <input type="text" name="card[number]" maxlength="16" placeholder="Card #">
+                    </div>
+                    <div class="three wide field">
+                        <label>CVC</label>
+                        <input type="text" name="card[cvc]" maxlength="3" placeholder="CVC">
+                    </div>
+                    <div class="six wide field">
+                        <label>Expiration</label>
+                        <div class="two fields">
+                            <div class="field">
+                                <select class="ui fluid search dropdown" name="card[expire-month]">
+                                    <option value="">Month</option>
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <input type="text" name="card[expire-year]" maxlength="4" placeholder="Year">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui segment">
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" name="gift" tabindex="0" class="hidden">
+                            <label>Do not include a receipt in the package</label>
+                        </div>
+                    </div>
+                </div>
+               <!-- <div class="ui button" tabindex="0">Submit Order</div>-->
             </div>
 
-        </div>
-        <!-- 기본 신상 -->
-        <div class="row">
-            <h3>기본 신상</h3>
-        </div>
-        <div class="row">
+
+            <input type="submit" class="ui button">
+
+        </form>
+
+
+
+
+
+           <!-- <div class="row">
             <form action="#" method="POST" class="receipt-form">
                 <div class="row bottom">
                     <div class="col span-1-of-3">
@@ -35,9 +199,9 @@
                     </div>
                     <div class="col span-2-of-3">
                         <div class="receipt-visit">
-                            <p class="visit-year"></p>년
-                            <p class="visit-month"></p>월
-                            <p class="visit-day"></p>일
+                            <p id="firstyear" class="visit-year"></p>년
+                            <p id="firstmonth" class="visit-month"></p>월
+                            <p id="firstday" class="visit-day"></p>일
                         </div>
                     </div>
                 </div>
@@ -55,8 +219,8 @@
                             <label for="gender">성별</label>
                         </div>
                         <div class="col span-2-of-3">
-                            <input type="radio" name="gender" value="man" checked="checked">남
-                            <input type="radio" name="gender" value="girl">여
+                            <input type="radio" name="gender" value="male" checked="checked">남
+                            <input type="radio" name="gender" value="female">여
                         </div>
                     </div>
                 </div>
@@ -70,24 +234,15 @@
                             <input type="text" name="birth" id="birth" placeholder="연도. 월. 일." required>
                         </div>
                     </div>
-                    <div class="col span-1-of-2">
-                        <div class="col span-1-of-3">
-                            <label for="marriage">결혼유무</label>
-                        </div>
-                        <div class="col span-2-of-3">
-                            <input type="radio" name="marriage" value="single" checked="checked">미혼
-                            <input type="radio" name="marriage" value="married">기혼
-                        </div>
-                    </div>
                 </div>
 
                 <div class="row">
                     <div class="col span-1-of-3">
                         <div class="col span-1-of-3">
-                            <label for="kidney">신장</label>
+                            <label for="height">신장</label>
                         </div>
                         <div class="col span-2-of-3">
-                            <input type="text" name="kidney" id="kidney" placeholder="신장을 입력하세요." required>
+                            <input type="text" name="height" id="height" placeholder="신장을 입력하세요." required>
                         </div>
                     </div>
                     <div class="col span-1-of-3">
@@ -108,10 +263,31 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col span-1-of-2">
+                        <div class="col span-1-of-4">
+                            <label for="smoke">흡연량</label>
+                        </div>
+                        <div class="col span-3-of-4">
+                            <input type="text" name="smoke" id="smoke" placeholder="하루 평균 흡연량 ex) 2갑" required>
+                        </div>
+                    </div>
+                    <div class="col span-1-of-2">
+                        <div class="col span-1-of-4">
+                            <label for="alcohol">음주량</label>
+                        </div>
+                        <div class="col span-3-of-4">
+                            <input type="text" name="alcohol" id="alcohol" placeholder="1주일 평균 음주량 ex) 소주 3병" required>
+                        </div>
+                    </div>
+
+                </div>
+
             </form>
         </div>
 
-        <!-- 과거력 -->
+        &lt;!&ndash; 과거력 &ndash;&gt;
         <div class="row">
             <h3>과거력(Past history)</h3>
             <form action="#" method="POST" class="receipt-form">
@@ -165,7 +341,7 @@
                     </div>
                 </div>
 
-                <!--입원 상해-->
+                &lt;!&ndash;입원 상해&ndash;&gt;
                 <div class="row">
                     <div class="col span-2-of-12">
                         <label for="history">입원, 상해 및 수술력</label>
@@ -199,7 +375,7 @@
                 </div>
 
 
-                <!--약물 복용-->
+                &lt;!&ndash;약물 복용&ndash;&gt;
                 <div class="row">
                     <div class="col span-2-of-12">
                         <label for="taking">약물 복용</label>
@@ -231,14 +407,38 @@
                     </div>
                 </div>
             </form>
-        </div>
+        </div>-->
         <!-- 사회력 -->
         <!--<div class="row">
             <h3>사회력 (Social history)</h3>
         </div> -->
+
+
     </section>
 
     <script src="/dist/app.bundle.js"></script>
 </body>
 
 </html>
+
+
+<script>
+    $('.ui.form')
+        .form({
+            fields: {
+                name     : 'empty',
+                gender   : 'empty',
+                birth : 'empty',
+                height : 'empty',
+                weight : 'empty',
+                bmi : 'empty',
+                smoke : 'empty',
+                alcohol : 'empty'
+            }
+        })
+    ;
+
+    $('.ui.dropdown')
+        .dropdown();
+
+</script>

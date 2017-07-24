@@ -2,5 +2,5 @@ import $ from 'jquery';
 
 
 $(function () {
-    $(".header").load("/views/parts/header.html");
+    $(".headerLoad").load("/views/parts/header.html");
 })

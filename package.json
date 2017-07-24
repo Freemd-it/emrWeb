@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
-    "build": "webpack -d",
+    "build": "webpack -d --watch",
     "build:prod": "webpack -p"
   },
   "repository": {
@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "jquery": "^3.2.1",
+    "jquery-typeahead": "^2.8.0",
     "partial-js": "^1.0.0"
   }
 }
