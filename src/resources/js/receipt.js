@@ -107,3 +107,43 @@ $("#patient_form").submit( function(e) {
         }
     });
 });
+
+
+    $('.ui.form')
+        .form({
+            fields: {
+                name     : 'empty',
+                gender   : 'empty',
+                birth : 'empty',
+                height : 'empty',
+                weight : 'empty',
+                bmi : 'empty',
+                smoke : 'empty',
+                alcohol : 'empty'
+            }
+        })
+    ;
+
+    $('.ui.dropdown')
+        .dropdown();
+
+
+
+
+    $('.ui.form')
+        .form({
+            fields: {
+                name     : 'empty',
+                gender   : 'empty',
+                birth : 'empty',
+                height : 'empty',
+                weight : 'empty',
+                bmi : 'empty',
+                smoke : 'empty',
+                alcohol : 'empty'
+            }
+        })
+    ;
+
+    $('.ui.dropdown')
+        .dropdown();
