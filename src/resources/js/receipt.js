@@ -1,149 +1,137 @@
 import $ from 'jquery';
-import _ from 'partial-js';
-import 'jquery-typeahead';
 
 
+// TODO 새로운 사람 저장, 동명이인 모달에서 선택하기, 흡연 비만도 음주량(주의 없는사람 들어오면 모두 지워지고 있는 사람이면 세팅값 변하는지 확인)
 
-$.typeahead({
-    input: '.js-typeahead-user_v1',
-    minLength: 1,
-    order: "asc",
-    dynamic: true,
-    delay: 500,
-    backdrop: {
-        "background-color": "#fff"
-    },
-    template: function (query, item) {
+/**
+ * 이름으로 조회
+ */
+$('#btn-name-send').on('click', () => {
+    const name = $.trim($('#nameInput').val());
+    let docs;
+    let date;
 
-        var color = "#777";
+    $('#name').attr({
+        disabled: false,
+    });
 
-        return '<span class="row">' +
-            '<span class="username">{{name}} <small style="color: ' + color + ';">({{birth}})</small></span>' +
-            "</span>"
-    },
-    emptyTemplate: "no result for {{query}}",
-    source: {
-        user: {
-            display: ["name", "birth"],
-            ajax: function (query) {
-                return {
-                    type: "GET",
-                    url: "http://localhost:3000/receipt/patients",
-                    //path: "data.user",
-                    data: {
-                        q: "{{query}}"
-                    },
-                    callback: {
-                        done: function (data) {
-                            console.log(data);
-                            return data;
-                        }
-                    }
-                }
-            }
+    $('#birth').attr({
+        disabled: false,
+    });
 
-        }
-    },
-    callback: {
-        onClick: function (node, a, item, event) {
+    $('.ui.dropdown').removeClass("disabled");
 
-            // You can do a simple window.location of the item.href
+    if(!name) {
+        alert("이름을 입력해주세요.");
+        return;
+    }
 
-            $.ajax({
-                type:"GET",
-                url:"http://localhost:3000/receipt/patient",
-                data:{ id : item.id },
-                success:function(result){
-                    $('#name').val(result.name);
-                    $('#birth').val(result.birth);
-                    $('#height').val(result.height);
-                    $('#weight').val(result.weight);
-                    var createdAt = new Date(result.createdAt);
+    docs = {
+        name,
+    };
 
-                    $('#firstcome').val(createdAt.getFullYear()+"년 "+(createdAt.getMonth()+1)+"월 " + createdAt.getDate()+"일");
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:3000/receipt/patients',
+        data: docs,
+        dataType: 'json',
+        cache: false,
+    }).done((result) => {
+        if(!result.length) {
 
-                    $('#gender > option[value="'+result.gender+'"]').attr("selected",true);
 
-                    //$('#bmi').val(item.bmi);
- //                   $('input:radio[name=gender]:input[value=' + result.gender + ']').attr("checked", true);
-                },
-                error:function(e){
-                    console.log("error : " + e);
-                }
+            $('#nameMessage').html('[ ' + name + ' ]' + ' 님에 대한 정보가 없습니다.');
+
+            $('#message').attr({
+                class: 'ui negative message',
+                hidden: false,
             });
 
-        },
-        onSendRequest: function (node, query) {
-            console.log('request is sent');
-            console.log(query);
-        },
-        onReceiveRequest: function (node, query) {
-            console.log('request is received')
-            console.log(query);
-        },
-        onSubmit : function(){
-            alert("새로등록합니다");
-            console.log($('#input').val());
-            $('#name').val($('#input').val());
+            setTimeout(() => {
+                $('#message')
+                    .closest('.message')
+                    .transition('fade')
+            }, 1000);
+
+            $('#nameInput').val('');
+            $('#name').val(name);
+            $('#height').val('');
+            $('#weight').val('');
+
+            date = new Date();
+            $('#firstcome').val(date.getFullYear() + ' 년 ' + (date.getMonth()+1) + ' 월 ' + date.getDate() + ' 일 ');
+
+            return;
         }
-    },
-    debug: true
-});
+
+        if(result.length == 1) {
+
+            $('#nameMessage').html('[ ' + result[0].name + ' ]' + ' 님이 조회됐습니다.');
+
+            $('#message').attr({
+                class: 'ui positive message',
+                hidden: false,
+            });
+
+            setTimeout(() => {
+                $('#message')
+                    .closest('.message')
+                    .transition('fade')
+            }, 1000);
 
 
-$("#patient_form").submit( function(e) {
-    var postData = $(this).serializeArray();
-    alert(JSON.stringify(postData));
-    $.ajax({
-        url : "http://localhost:3000/receipt/patient",
-        type: "POST",
-        data : postData,
-        success:function(data) {
-            //data: return data from server
-        },
-        error: function(jqXHR, textStatus, errorThrown)
-        {
-            //if fails
+            $('#nameInput').val('');
+
+            $('#name').attr("disabled", true).val(result[0].name);
+
+
+            $('#height').val(result[0].height);
+
+            $('#weight').val(result[0].weight);
+
+            date = new Date(result[0].createdAt).toISOString().slice(0,10);
+
+            $('#firstcome').val(date);
+
+            date = new Date(result[0].birth).toISOString().slice(0,10);
+
+            $('#birth').attr("disabled", true).val(date);
+
+            $('#gender').dropdown('set selected', result[0].gender);
+
+            $('.ui.dropdown').addClass("disabled");
+
+        } else {
+
+            $('#nameInput').val('');
+
+
+            if($('#list').children().length)
+                $('#list *').remove();
+
+            for(let i = 0; i < result.length; i++) {
+                date = new Date(result[i].birth);
+                $('#nameInput').val('');
+                $('#list').append(
+                    '  <div id=' + result[i].id + '  class="item" align="middle">\n' +
+                    '                    <div id=' + result[i].id + ' class="content">\n' +
+                    '                        <div id=' + result[i].id + ' class="header">' + result[i].name +'</div>\n' +
+                    '                        ' + date.getFullYear() + ' 년 ' + (date.getMonth()+1) + ' 월 ' + date.getDate() + ' 일 '+
+                    '                    </div>\n' +
+                    '                </div>');
+
+            }
+
+            $('.ui.basic.modal')
+                .modal('show');
         }
     });
 });
 
-
-    $('.ui.form')
-        .form({
-            fields: {
-                name     : 'empty',
-                gender   : 'empty',
-                birth : 'empty',
-                height : 'empty',
-                weight : 'empty',
-                bmi : 'empty',
-                smoke : 'empty',
-                alcohol : 'empty'
-            }
-        })
-    ;
-
-    $('.ui.dropdown')
-        .dropdown();
+$(document).on('click', '.item', (e) => {
+    console.log(e.target.id);
+});
 
 
-
-
-    $('.ui.form')
-        .form({
-            fields: {
-                name     : 'empty',
-                gender   : 'empty',
-                birth : 'empty',
-                height : 'empty',
-                weight : 'empty',
-                bmi : 'empty',
-                smoke : 'empty',
-                alcohol : 'empty'
-            }
-        })
-    ;
-
-    $('.ui.dropdown')
-        .dropdown();
+$('.ui.dropdown')
+    .dropdown();
