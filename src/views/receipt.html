@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Freemed-EMR</title>
     <link href="/vscode.ico" rel="shortcut icon">
-    <link href="/dist/app.css" rel="stylesheet"> 
+    <link href="/dist/app.css" rel="stylesheet">
     <script src="/dist/loader.bundle.js"></script>
 </head>
 
@@ -120,7 +120,8 @@
                     </div>
 
                     <div class="field">
-                        <label>음주경력</label>                        <div class="ui right labeled input">
+                        <label>음주경력</label>
+                        <div class="ui right labeled input">
                             <input id="drinkingPeriod" type="text" name="smoke" placeholder="">
                             <a  class="ui label">년</a>
                         </div>
@@ -128,80 +129,327 @@
                 </div>
             </div>
 
-
-
-
-
-
-
             <div class="ui segment">
                 <h3 class="ui dividing header">과거력</h3>
-                <div class="field">
-                    <label>Card Type</label>
-                    <select name="disease" multiple="" class="ui fluid dropdown">
-                        <option value="">병명</option>
-                        <option value="high">고혈압</option>
-                        <option value="angular">당뇨</option>
-                        <option value="css">A형 간염</option>
-                        <option value="design">B형 간염</option>
-                        <option value="ember">C형 간염</option>
-                        <option value="html">결핵</option>
-                        <option value="ia">심질환</option>
-                        <option value="javascript">신장질환</option>
-                        <option value="mech">종양</option>
-                        <option value="meteor">감염성 질환</option>
-                        <option value="node">성병</option>
-                    </select>
-                </div>
-                <div class="fields">
-                    <div class="seven wide field">
-                        <label>Card Number</label>
-                        <input type="text" name="card[number]" maxlength="16" placeholder="Card #">
-                    </div>
-                    <div class="three wide field">
-                        <label>CVC</label>
-                        <input type="text" name="card[cvc]" maxlength="3" placeholder="CVC">
-                    </div>
-                    <div class="six wide field">
-                        <label>Expiration</label>
-                        <div class="two fields">
-                            <div class="field">
-                                <select class="ui fluid search dropdown" name="card[expire-month]">
-                                    <option value="">Month</option>
-                                    <option value="1">January</option>
-                                    <option value="2">February</option>
-                                    <option value="3">March</option>
-                                    <option value="4">April</option>
-                                    <option value="5">May</option>
-                                    <option value="6">June</option>
-                                    <option value="7">July</option>
-                                    <option value="8">August</option>
-                                    <option value="9">September</option>
-                                    <option value="10">October</option>
-                                    <option value="11">November</option>
-                                    <option value="12">December</option>
-                                </select>
+
+                <div class="ui segment">
+                    <div class="ui grid">
+
+                        <div class="two wide column" align="middle">
+                            <label style="text-align: center">병력</label>
+                        </div>
+
+                        <div class="fourteen wide column">
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>고혈압</label>
                             </div>
-                            <div class="field">
-                                <input type="text" name="card[expire-year]" maxlength="4" placeholder="Year">
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>당뇨</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>A형 간염</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>B형 간염</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>C형 간염</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>결핵</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>심질환</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>신장질환</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>종양</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>감영성 질환</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>성병</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui grid">
+                        <div class="two wide column" align="middle">
+                            <label style="text-align: center">상세설명</label>
+                        </div>
+
+                        <div class="fourteen wide column">
+                            <div class="ui fluid input focus">
+                                <input type="text" placeholder="Description">
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="ui segment">
-                    <div class="field">
-                        <div class="ui toggle checkbox">
-                            <input type="checkbox" name="gift" tabindex="0" class="hidden">
-                            <label>Do not include a receipt in the package</label>
+                    <div class="ui grid">
+
+                        <div class="two wide column" align="middle">
+                            <label style="text-align: center">병력</label>
+                        </div>
+
+                        <div class="fourteen wide column">
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>고혈압</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>당뇨</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>A형 간염</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>B형 간염</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>C형 간염</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>결핵</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>심질환</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>신장질환</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>종양</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>감영성 질환</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>성병</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui grid">
+                        <div class="two wide column" align="middle">
+                            <label style="text-align: center">상세설명</label>
+                        </div>
+
+                        <div class="fourteen wide column">
+                            <div class="ui fluid input focus">
+                                <input type="text" placeholder="Description">
+                            </div>
                         </div>
                     </div>
                 </div>
-               <!-- <div class="ui button" tabindex="0">Submit Order</div>-->
+
+                <div class="ui segment">
+                    <div class="ui grid">
+
+                        <div class="two wide column" align="middle">
+                            <label style="text-align: center">병력</label>
+                        </div>
+
+                        <div class="fourteen wide column">
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>고혈압</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>당뇨</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>A형 간염</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>B형 간염</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>C형 간염</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>결핵</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>심질환</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>신장질환</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>종양</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>감영성 질환</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>성병</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui grid">
+                        <div class="two wide column" align="middle">
+                            <label style="text-align: center">상세설명</label>
+                        </div>
+
+                        <div class="fourteen wide column">
+                            <div class="ui fluid input focus">
+                                <input type="text" placeholder="Description">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui segment">
+                    <div class="ui grid">
+
+                        <div class="two wide column" align="middle">
+                            <label style="text-align: center">병력</label>
+                        </div>
+
+                        <div class="fourteen wide column">
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>고혈압</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>당뇨</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>A형 간염</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>B형 간염</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>C형 간염</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>결핵</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>심질환</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>신장질환</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>종양</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>감영성 질환</label>
+                            </div>
+
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example">
+                                <label>성병</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui grid">
+                        <div class="two wide column" align="middle">
+                            <label style="text-align: center">상세설명</label>
+                        </div>
+
+                        <div class="fourteen wide column">
+                            <div class="ui fluid input focus">
+                                <input type="text" placeholder="Description">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-
-            <input type="submit" class="ui button">
+            <div class="ui grid">
+                <div class="right floated four wide column" align="middle">
+                    <button class="fluid huge negative ui button">예진으로 보내기</button>
+                </div>
+            </div>
 
         </form>
     </section>

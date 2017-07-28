@@ -28341,6 +28341,7 @@ a.ui.card:hover,
   font-size: 1rem;
   line-height: 17px;
   min-width: 17px;
+  margin-left: 1%;
 }
 
 /* HTML Checkbox */

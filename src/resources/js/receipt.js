@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 
-// TODO 새로운 사람 저장, 동명이인 모달에서 선택하기, 흡연 비만도 음주량(주의 없는사람 들어오면 모두 지워지고 있는 사람이면 세팅값 변하는지 확인)
+// TODO 새로운 사람 저장, 과거력
 
 /**
  * 이름으로 조회
@@ -143,6 +143,9 @@ $('#btn-name-send').on('click', () => {
     });
 });
 
+/**
+ * 동명이인 id로 조회
+ */
 $(document).on('click', '.item', (e) => {
     let date;
     const docs = {
@@ -209,6 +212,10 @@ $(document).on('click', '.item', (e) => {
 
 $('.ui.dropdown')
     .dropdown();
+
+$('.ui.checkbox')
+    .checkbox()
+;
 
 $('#weight, #height').change(() => {
     const weight = $('#weight').val();
