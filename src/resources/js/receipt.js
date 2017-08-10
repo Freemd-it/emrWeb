@@ -10,6 +10,7 @@ $('#btn-name-send').on('click', () => {
     const name = $.trim($('#nameInput').val());
     let docs;
     let date;
+    let idx = 1;
 
     $('#name').attr({
         disabled: false,
@@ -37,6 +38,8 @@ $('#btn-name-send').on('click', () => {
         dataType: 'json',
         cache: false,
     }).done((result) => {
+
+        console.log(result);
         if(!result.length) {
 
 
@@ -63,9 +66,27 @@ $('#btn-name-send').on('click', () => {
             $('#smokingPeriod').val('');
             $('#drinkingPeriod').val('');
             $('#bmi').val('');
+            $('#diseaseDescription').val('');
+            $('#allergyDescription').val('');
+            $('input[name="pastMedical"][value="Y"]').prop("checked", true).trigger("change");
+            $('input[name="pastMedication"][value="Y"]').prop("checked", true).trigger("change");
+            $('input[name="pastMedicationDescription"]').val('');
+            $('input[name="pastMedicalDescription"]').val('');
 
             date = new Date();
             $('#firstcome').val(date.getFullYear() + ' 년 ' + (date.getMonth()+1) + ' 월 ' + date.getDate() + ' 일 ');
+
+
+            for (idx; idx < 12; idx++) {
+                let id = '#disease'+idx;
+                let id2 = '#allergy'+idx;
+
+                $(id).prop("checked", false);
+                $(id2).prop("checked", false);
+            }
+            idx = 1;
+
+
 
             return;
         }
@@ -104,7 +125,7 @@ $('#btn-name-send').on('click', () => {
             $('#drinkingPeriod').val(result[0].drinkingPeriod);
             $('#bmi').val(result[0].bmi);
 
-            date = new Date(result[0].createdAt).toISOString().slice(0,10);
+            date = new Date(result[0].firstVisit).toISOString().slice(0,10);
 
             $('#firstcome').val(date);
 
@@ -115,6 +136,41 @@ $('#btn-name-send').on('click', () => {
             $('#gender').dropdown('set selected', result[0].gender);
 
             $('.ui.dropdown').addClass("disabled");
+
+
+            for (let i of result[0].histories[0].pastHistory) {
+                let id = '#disease'+idx;
+                if(i == 1) {
+                    $(id).prop("checked", true);
+                }
+                idx++;
+            }
+
+            idx = 1;
+            for (let i of result[0].histories[0].allergy) {
+                let id = '#allergy'+idx;
+                if(i == 1) {
+                    $(id).prop("checked", true);
+                }
+                idx++;
+            }
+            let value = result[0].histories[0].pastMedical;
+
+            $('input[name="pastMedical"][value=' + value + ']').prop('checked', true).trigger("change");
+
+            $('#pastMedicalTime').val(result[0].histories[0].pastMedicalTime);
+            $('#pastMedicalArea').val(result[0].histories[0].pastMedicalArea);
+
+            value = result[0].histories[0].pastMedication;
+
+            $('input[name="pastMedication"][value=' + value + ']').prop('checked', true).trigger("change");
+
+            $('#pastMedicationPeriod').val(result[0].histories[0].pastMedicationPeriod);
+            $('#pastMedicationType').val(result[0].histories[0].pastMedicationType);
+
+            $('#diseaseDescription').val(result[0].histories[0].pastHistoryComment);
+
+            $('#allergyDescription').val(result[0].histories[0].allergyComment)
 
         } else {
 
@@ -192,7 +248,7 @@ $(document).on('click', '.item', (e) => {
 
         $('#bmi').val(result.bmi);
 
-        date = new Date(result.createdAt).toISOString().slice(0,10);
+        date = new Date(result.firstVisit).toISOString().slice(0,10);
 
         $('#firstcome').val(date);
 
@@ -225,3 +281,59 @@ $('#weight, #height').change(() => {
     $('#bmi').val(bmi.toFixed(5));
 });
 
+const getDiseaseHistory = () => {
+    let check = '';
+    console.log('#####################################');
+
+    // $('input[name="H blood pressure"]').is(':checked') ? check += "1" : check+= "0";
+    // $('input[name="glucose"]').is(':checked') ? check += "1" : check+= "0";
+    // $('input[name="hepatitis A"]').is(':checked') ? check += "1" : check+= "0";
+    // $('input[name="hepatitis B"]').is(':checked') ? check += "1" : check+= "0";
+    // $('input[name="hepatitis C"]').is(':checked') ? check += "1" : check+= "0";
+    // $('input[name="tuberculosis"]').is(':checked') ? check += "1" : check+= "0";
+    // $('input[name="heart disease"]').is(':checked') ? check += "1" : check+= "0";
+    // $('input[name="kidney disease"]').is(':checked') ? check += "1" : check+= "0";
+    // $('input[name="tumor"]').is(':checked') ? check += "1" : check+= "0";
+    // $('input[name="infectious disease"]').is(':checked') ? check += "1" : check+= "0";
+    // $('input[name="venereal disease"]').is(':checked') ? check += "1" : check+= "0";
+
+    $('.disease').each(()=>{
+        $('.disease').is(':checked') ? check += "1" : check+= "0";
+    });
+
+    console.log(check);
+    console.log('#####################################');
+    return check;
+};
+
+getDiseaseHistory();
+
+$('input[name="pastMedical"]').on('change', () => {
+    const type = $('input[name="pastMedical"]:checked').val();
+
+    console.log('&&&&&&&&&&&&&&&&&&&&&&')
+    console.log(type)
+    if(type === 'N' ) {
+        $('#pastMedicalTime').prop('disabled', true);
+        $('#pastMedicalArea').prop('disabled', true);
+    }
+
+    if(type === 'Y' ) {
+        $('#pastMedicalTime').prop('disabled', false);
+        $('#pastMedicalArea').prop('disabled', false);
+    }
+});
+
+$('input[name="pastMedication"]').on('change', () => {
+    const type = $('input[name="pastMedication"]:checked').val();
+
+    if(type === 'N' ) {
+        $('#pastMedicationPeriod').prop('disabled', true);
+        $('#pastMedicationType').prop('disabled', true);
+    }
+
+    if(type === 'Y' ) {
+        $('#pastMedicationPeriod').prop('disabled', false);
+        $('#pastMedicationType').prop('disabled', false);
+    }
+});
