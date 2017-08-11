@@ -204,9 +204,11 @@ $('#btn-name-send').on('click', () => {
  */
 $(document).on('click', '.item', (e) => {
     let date;
+    let idx = 1;
     const docs = {
         id: e.target.id,
     };
+
 
     $.ajax({
         type: 'GET',
@@ -215,6 +217,8 @@ $(document).on('click', '.item', (e) => {
         dataType: 'json',
         cache: false,
     }).done((result) => {
+        console.log('#####')
+        console.log(result)
         $('#nameMessage').html('[ ' + result.name + ' ]' + ' 님이 조회됐습니다.');
 
         $('#message').attr({
@@ -259,6 +263,41 @@ $(document).on('click', '.item', (e) => {
         $('#gender').dropdown('set selected', result.gender);
 
         $('.ui.dropdown').addClass("disabled");
+
+        for (let i of result.histories[0].pastHistory) {
+            let id = '#disease'+idx;
+            if(i == 1) {
+                $(id).prop("checked", true);
+            }
+            idx++;
+        }
+
+        idx = 1;
+        for (let i of result.histories[0].allergy) {
+            let id = '#allergy'+idx;
+            if(i == 1) {
+                $(id).prop("checked", true);
+            }
+            idx++;
+        }
+        let value = result.histories[0].pastMedical;
+
+        $('input[name="pastMedical"][value=' + value + ']').prop('checked', true).trigger("change");
+
+        $('#pastMedicalTime').val(result.histories[0].pastMedicalTime);
+        $('#pastMedicalArea').val(result.histories[0].pastMedicalArea);
+
+        value = result.histories[0].pastMedication;
+
+        $('input[name="pastMedication"][value=' + value + ']').prop('checked', true).trigger("change");
+
+        $('#pastMedicationPeriod').val(result.histories[0].pastMedicationPeriod);
+        $('#pastMedicationType').val(result.histories[0].pastMedicationType);
+
+        $('#diseaseDescription').val(result.histories[0].pastHistoryComment);
+
+        $('#allergyDescription').val(result.histories[0].allergyComment)
+
 
         $('.ui.basic.modal')
             .modal('hide');
