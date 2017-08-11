@@ -1,8 +1,5 @@
 import $ from 'jquery';
 
-
-// TODO 새로운 사람 저장, 과거력
-
 /**
  * 이름으로 조회
  */
@@ -309,8 +306,7 @@ $('.ui.dropdown')
     .dropdown();
 
 $('.ui.checkbox')
-    .checkbox()
-;
+    .checkbox();
 
 $('#weight, #height').change(() => {
     const weight = $('#weight').val();
@@ -322,36 +318,27 @@ $('#weight, #height').change(() => {
 
 const getDiseaseHistory = () => {
     let check = '';
-    console.log('#####################################');
 
-    // $('input[name="H blood pressure"]').is(':checked') ? check += "1" : check+= "0";
-    // $('input[name="glucose"]').is(':checked') ? check += "1" : check+= "0";
-    // $('input[name="hepatitis A"]').is(':checked') ? check += "1" : check+= "0";
-    // $('input[name="hepatitis B"]').is(':checked') ? check += "1" : check+= "0";
-    // $('input[name="hepatitis C"]').is(':checked') ? check += "1" : check+= "0";
-    // $('input[name="tuberculosis"]').is(':checked') ? check += "1" : check+= "0";
-    // $('input[name="heart disease"]').is(':checked') ? check += "1" : check+= "0";
-    // $('input[name="kidney disease"]').is(':checked') ? check += "1" : check+= "0";
-    // $('input[name="tumor"]').is(':checked') ? check += "1" : check+= "0";
-    // $('input[name="infectious disease"]').is(':checked') ? check += "1" : check+= "0";
-    // $('input[name="venereal disease"]').is(':checked') ? check += "1" : check+= "0";
-
-    $('.disease').each(()=>{
-        $('.disease').is(':checked') ? check += "1" : check+= "0";
+    $('.disease').each(function () {
+        $(this).is(':checked') ? check += "1" : check+= "0";
     });
 
-    console.log(check);
-    console.log('#####################################');
     return check;
 };
 
-getDiseaseHistory();
+const getAllergyHistory = () => {
+    let check = '';
+
+    $('.allergy').each(function () {
+        $(this).is(':checked') ? check += "1" : check+= "0";
+    });
+
+    return check;
+};
 
 $('input[name="pastMedical"]').on('change', () => {
     const type = $('input[name="pastMedical"]:checked').val();
 
-    console.log('&&&&&&&&&&&&&&&&&&&&&&')
-    console.log(type)
     if(type === 'N' ) {
         $('#pastMedicalTime').prop('disabled', true);
         $('#pastMedicalArea').prop('disabled', true);
@@ -375,4 +362,62 @@ $('input[name="pastMedication"]').on('change', () => {
         $('#pastMedicationPeriod').prop('disabled', false);
         $('#pastMedicationType').prop('disabled', false);
     }
+});
+
+$('#sendToPart2').on('click', () => {
+    let docs;
+    const name = $('#name').val();
+    const birth = $('#birth').val();
+    const height = $('#height').val();
+    const weight = $('#weight').val();
+    const BMI = $('#bmi').val();
+    const gender = $('#gender').val();
+    const smokingAmount = $('#smoking').val();
+    const smokingPeriod = $('#smokingPeriod').val();
+    const drinkingAmount = $('#drinking').val();
+    const drinkingPeriod = $('#drinkingPeriod').val();
+    const pastHistory = getDiseaseHistory();
+    const pastHistoryComment = $('#diseaseDescription').val();
+    const allergy = getAllergyHistory();
+    const allergyComment = $('#allergyDescription').val();
+    const pastMedical = $('input[name=pastMedical]:checked').val();
+    const pastMedicalTime = $('#pastMedicalTime').val();
+    const pastMedicalArea = $('#pastMedicalArea').val();
+    const pastMedicationPeriod = $('#pastMedicationPeriod').val();
+    const pastMedicationType = $('#pastMedicationType').val();
+    const pastMedication = $('input[name=pastMedication]:checked').val();
+
+    docs = {
+        name,
+        birth,
+        height,
+        weight,
+        BMI,
+        gender,
+        smokingAmount,
+        smokingPeriod,
+        drinkingAmount,
+        drinkingPeriod,
+        pastHistory,
+        pastHistoryComment,
+        allergy,
+        allergyComment,
+        pastMedical,
+        pastMedicalTime,
+        pastMedicalArea,
+        pastMedicationPeriod,
+        pastMedicationType,
+        pastMedication,
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:3000/receipt/patient',
+        data: docs,
+        dataType: 'json',
+        cache: false,
+    }).done((result) => {
+
+    });
+
 });
