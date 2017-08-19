@@ -417,7 +417,14 @@ $('#sendToPart2').on('click', () => {
         dataType: 'json',
         cache: false,
     }).done((result) => {
+        window.scrollTo(0, 0);
 
+        $('#patient_form').each(function(){
+            this.reset();
+        });
+
+        console.log(result);
+        //todo 정상적으로 등록되었는지 어럴트, 정상적 등록시 적힌데이터 지우기
     });
 
 });
