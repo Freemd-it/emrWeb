@@ -1,19 +1,18 @@
+const webpack = require('webpack');
 const path = require('path');
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ROOT = path.resolve(__dirname);
 
 const extractPlugin = new extractTextWebpackPlugin({
-    filename: 'main.css'
+    filename: '[name].css'
 })
-
 const config = {
     context: path.resolve(ROOT),
 
     entry: {
         app: './src/app.js',
-        loader:'./src/loader.js'
+        loader: './src/loader.js'
     },
 
     output: {
@@ -34,14 +33,25 @@ const config = {
                 }
             },
             {
-                test: /\.scss$/,
+                test: /\.scss|css$/,
                 use: extractPlugin.extract({
                     use: ['css-loader', 'sass-loader']
                 })
             },
             {
-                test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/,
+                test: /\.(eot|png|jpg)$/,
                 loader: 'url-loader?limit=30000&name=[name]-[hash].[ext]'
+            },
+            {
+                test: /\.(woff|woff2|ttf|svg)$/,
+                loader: 'url-loader?limit=8192&name=[name]-[hash].[ext]',
+                options: {
+                    prefix: 'etc'
+                }
+            },
+            {
+                test: /\.(ttf)$/,
+                loader: 'file-loader'
             },
             {
                 test: /\.jpe?g$|\.gif$|\.png$/i,
@@ -50,15 +60,18 @@ const config = {
             {
                 test: /\.jpg/,
                 loader: 'file'
-            }  
+            }
         ]
     },
     plugins: [
         extractPlugin,
-        new HtmlWebpackPlugin(),
+        new webpack.ProvidePlugin({
+            jQuery: "jquery" 
+        })
+
     ],
     devServer: {
-        contentBase: path.join(ROOT, 'src'), 
+        contentBase: path.join(ROOT, 'src'),
         port: 8080
     }
 }
