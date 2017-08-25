@@ -23,7 +23,6 @@ $('#waitingList').on('click', () => {
                        <td id=${result[i].chart_id}>${result[i].chart_id}</td>
                        <td id=${result[i].chart_id}>${result[i].name}</td>
                        <td id=${result[i].chart_id}>${result[i].birth}</td>
-
                 </tr>`
 
             )}
@@ -65,6 +64,7 @@ $('#sendToDoctor').on('click', () => {
     const bloodGlucose = $('#bloodGlucose').val();
     const mealTerm = $('#mealTerm').val();
     const chartNumber = $('#preChartId').val();
+    const ccData = $('#CCform').serializeArray();
 
     const docs = {
         heartRate,
@@ -75,6 +75,7 @@ $('#sendToDoctor').on('click', () => {
         bloodGlucose,
         mealTerm,
         chartNumber,
+        ccArray : JSON.stringify(ccData),
     };
 
     $.ajax({
@@ -86,12 +87,37 @@ $('#sendToDoctor').on('click', () => {
     }).done(result => {
         console.log(result);
         if(result.length == 1) {
-            $('#chartForm').each(function(){
+            $('#chartForm, #CCsegment').each(function(){
                 this.reset();
             });
+
+            if($('#CCsegment').children().length > 0) {
+                $('#CCsegment *').remove();
+            }
+
             return 0;
         }
 
     })
 
+});
+
+$('#CCbutton').on('click', () => {
+    const ref = $('#CCsegment').children().length;
+
+    $('#CCsegment').append(
+        `<div class="ui grid">
+            <div class="sixteen wide column">
+                <div class="ui fluid input focus">
+                    <input name="CC ${ref}" type="text" placeholder="C.C">
+                </div>
+
+                <div class="ui form" style="margin-top: 1%">
+                    <div class="field">
+                        <textarea name="HistoryOfCC ${ref}" rows="3" placeholder="History of C.C"></textarea>
+                    </div>
+                </div>
+            </div>
+         </div>`
+    );
 });
