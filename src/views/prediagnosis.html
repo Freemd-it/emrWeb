@@ -28,7 +28,7 @@
     <div class="ui clearing divider"></div>
 
     <div class="ui form container">
-        <div class="ui segment">
+        <form id="chartForm" class="ui segment">
             <h3 class="ui dividing header">V/S</h3>
 
             <div class="two fields">
@@ -46,12 +46,12 @@
             <div class="two fields">
                 <div class="field">
                     <label>HR</label>
-                    <input type="text" id="HR">
+                    <input type="text" id="heartRate">
                 </div>
 
                 <div class="field">
                     <label>PR</label>
-                    <input type="text" id="PR">
+                    <input type="text" id="pulseRate">
                 </div>
             </div>
 
@@ -59,12 +59,20 @@
             <div class="two fields">
                 <div class="field">
                     <label>BT</label>
-                    <input type="text" id="BT">
+                    <input type="text" id="bodyTemporature">
                 </div>
 
                 <div class="field">
                     <label>BP</label>
-                    <input type="text" id="BP">
+                    <div class="two fields">
+                        <div class="field">
+                            <input type="number" placeholder="수축기" id="systoleBloodPressure">
+                        </div>
+
+                        <div class="field">
+                            <input type="number" placeholder="이완기" id="diastoleBloodPressure">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -72,23 +80,34 @@
             <div class="two fields">
                 <div class="field">
                     <label>Glucose</label>
-                    <input type="text" id="Glucose">
+                    <input type="number" id="bloodGlucose">
                 </div>
 
                 <div class="field">
                     <label>식후</label>
-                    <select id="gender" name="gender" class="ui dropdown">
-                        <option value="2hours">2</option>
-                        <option value="3hours">3</option>
-                        <option value="4hours">4</option>
+                    <select id="mealTerm" name="gender" class="ui dropdown">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
                     </select>
                 </div>
             </div>
-        </div>
+        </form>
+
 
         <div class="ui segment">
             <h3 class="ui dividing header">C.C</h3>
 
+        </div>
+    </div>
+
+    <div class="ui grid" style="margin-top: 1%">
+        <div class="left floated six wide column" style="margin-left:.1%"></div>
+
+        <div>
+            <button id="sendToDoctor" class="huge negative ui button">본진으로 보내기</button>
         </div>
     </div>
 </section>

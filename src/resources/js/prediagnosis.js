@@ -56,3 +56,42 @@ $(document).on('click', '.table-content', (e) => {
     $('.ui.longer.modal').modal('hide');
 });
 
+$('#sendToDoctor').on('click', () => {
+    const heartRate = $('#heartRate').val();
+    const pulseRate = $('#pulseRate').val();
+    const bodyTemporature = $('#bodyTemporature').val();
+    const systoleBloodPressure = $('#systoleBloodPressure').val();
+    const diastoleBloodPressure = $('#diastoleBloodPressure').val();
+    const bloodGlucose = $('#bloodGlucose').val();
+    const mealTerm = $('#mealTerm').val();
+    const chartNumber = $('#preChartId').val();
+
+    const docs = {
+        heartRate,
+        pulseRate,
+        bodyTemporature,
+        systoleBloodPressure,
+        diastoleBloodPressure,
+        bloodGlucose,
+        mealTerm,
+        chartNumber,
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:3000/chart/update',
+        data: docs,
+        dataType: 'json',
+        cache: false,
+    }).done(result => {
+        console.log(result);
+        if(result.length == 1) {
+            $('#chartForm').each(function(){
+                this.reset();
+            });
+            return 0;
+        }
+
+    })
+
+});
