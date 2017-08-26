@@ -38,6 +38,7 @@
     "file-loader": "^0.11.2",
     "jquery": "^3.2.1",
     "jquery-typeahead": "^2.8.0",
+    "lodash": "^4.15.0",
     "partial-js": "^1.0.0"
   }
 }
