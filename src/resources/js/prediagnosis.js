@@ -49,6 +49,8 @@ $(document).on('click', '.table-content', (e) => {
 
         $('#preChartId').val(result.chartNumber);
         $('#preName').val(result.patient.name);
+
+        $('#getPastCC').attr('disabled', false);
     })
 
 
@@ -87,7 +89,7 @@ $('#sendToDoctor').on('click', () => {
     }).done(result => {
         console.log(result);
         if(result.length == 1) {
-            $('#chartForm, #CCsegment').each(function(){
+            $('#chartForm, #CCform').each(function(){
                 this.reset();
             });
 
@@ -95,6 +97,8 @@ $('#sendToDoctor').on('click', () => {
                 $('#CCsegment *').remove();
             }
 
+
+            $('#getPastCC').attr('disabled', true);
             return 0;
         }
 
