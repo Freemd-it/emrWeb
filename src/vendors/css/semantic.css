@@ -19,6 +19,13 @@
  *
  */
 
+ .inner-div {
+   margin-top: 2%;
+   padding : 1%;
+   border-style: solid;
+   border-color: #b9e1fc;
+   border-radius: 5px;
+ }
 /*******************************
              Reset
 *******************************/
