@@ -14,4 +14,5 @@ import './vendors/js/semantic.js';
 
 //접수
 import './resources/js/receipt.js';
-import './resources/js/prediagnosis.js'
+import './resources/js/prediagnosis.js';
+import './resources/js/prescription.js';
