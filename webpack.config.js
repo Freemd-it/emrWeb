@@ -10,6 +10,7 @@ const extractPlugin = new extractTextWebpackPlugin({
 const config = {
     context: path.resolve(ROOT),
 
+	devtool: 'inline-source-map',
     entry: {
         app: './src/app.js',
         login:'./src/login.js',
@@ -69,12 +70,14 @@ const config = {
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
-        })
+        }),  
 
     ],
     devServer: {
         contentBase: path.join(ROOT, 'src'),
-        port: 8080
+        port: 8080, 
+        hotOnly: true,
+		historyApiFallback: true
     }
 }
 
