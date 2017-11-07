@@ -67,7 +67,8 @@ const config = {
     plugins: [
         extractPlugin,
         new webpack.ProvidePlugin({
-            jQuery: "jquery" 
+            $: "jquery",
+            jQuery: "jquery"
         })
 
     ],
