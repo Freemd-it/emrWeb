@@ -103,7 +103,7 @@
             <h3 class="ui dividing header">C.C <scan style="font-size : 10px;">(Chief Complaint , 수혜자가 불편하신 곳)</scan></h3>
 
             <form id="CCform">
-                <div class="ui grid">
+                <div id="firstCC" class="inner-div">
                     <div class="sixteen wide column">
                         <div class="ui fluid input focus">
                             <input name="CC" type="text" placeholder="C.C">
@@ -117,7 +117,7 @@
                     </div>
                 </div>
 
-                <div id="CCsegment">
+                <div id="CCsegment" class="CCsegment">
 
                 </div>
             </form>
@@ -129,7 +129,7 @@
         <div class="left floated six wide column" style="margin-left:.1%"></div>
 
         <div>
-            <button id="sendToDoctor" class="huge negative ui button">본진으로 보내기</button>
+            <button id="sendToDoctor" class="huge negative send ui button">본진으로 보내기</button>
         </div>
     </div>
 </section>
@@ -137,7 +137,7 @@
 <div class="ui longer modal">
     <div class="header">대기 명단</div>
     <div class="scrolling content">
-        <table class="ui fixed celled table">
+        <table class="ui selectable celled table">
             <thead>
                 <tr>
                     <th>차트 번호</th>
@@ -154,6 +154,42 @@
             </tbody>
         </table>
 
+
+    </div>
+</div>
+
+
+<div class="ui past modal">
+    <i class="close icon"></i>
+    <div class="header">
+        과거 차트
+    </div>
+    <div class="content">
+        <table class="ui selectable celled table">
+            <thead>
+            <tr>
+                <th>차트 번호</th>
+                <th>날짜</th>
+            </tr>
+            </thead>
+            <tbody id="tablePastBody" class="tbody-content">
+            <tr>
+                <td>Cell</td>
+                <td>Cell</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div class="ui selected cc modal">
+    <button id="copyButton" class="huge primary ui button" style="float: right; margin: auto">COPY</button>
+    <div class="header">
+        과거 차트 내용
+    </div>
+
+    <div id="modalPastCC" class="content">
 
     </div>
 </div>
