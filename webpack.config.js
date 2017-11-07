@@ -12,6 +12,7 @@ const config = {
 
     entry: {
         app: './src/app.js',
+        login:'./src/login.js',
         loader: './src/loader.js'
     },
 
