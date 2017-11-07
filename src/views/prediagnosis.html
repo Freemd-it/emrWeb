@@ -34,7 +34,7 @@
         <form id="chartForm" class="ui segment">
             <div class="two fields">
                 <div class="field">
-                    <label>CHRT ID</label>
+                    <label>CHART ID</label>
                     <input type="text" id="preChartId" style="border-color: #fc0a0e; background: #fcf4f1" disabled>
                 </div>
 
@@ -46,12 +46,12 @@
 
             <div class="two fields">
                 <div class="field">
-                    <label>HR</label>
+                    <label>HR <scan style="font-size : 10px;">(Heart Rate , 심박수)</scan></label>
                     <input type="text" id="heartRate">
                 </div>
 
                 <div class="field">
-                    <label>PR</label>
+                    <label>PR <scan style="font-size : 10px;">(Pulse Rate , 맥박수)</scan></label>
                     <input type="text" id="pulseRate">
                 </div>
             </div>
@@ -59,12 +59,12 @@
 
             <div class="two fields">
                 <div class="field">
-                    <label>BT</label>
+                    <label>BT <scan style="font-size : 10px;">(Body Temporature , 체온)</scan></label>
                     <input type="text" id="bodyTemporature">
                 </div>
 
                 <div class="field">
-                    <label>BP</label>
+                    <label>BP <scan style="font-size : 10px;">(Blood Pressure , 혈압)</scan></label>
                     <div class="two fields">
                         <div class="field">
                             <input type="number" placeholder="수축기" id="systoleBloodPressure">
@@ -80,7 +80,7 @@
 
             <div class="two fields">
                 <div class="field">
-                    <label>Glucose</label>
+                    <label>Glucose <scan style="font-size : 10px;">(혈당)</scan></label>
                     <input type="number" id="bloodGlucose">
                 </div>
 
@@ -100,7 +100,7 @@
 
         <div class="ui segment">
             <button id="CCbutton" class="ui primary button" style="float: right;">C.C 항목 추가</button>
-            <h3 class="ui dividing header">C.C</h3>
+            <h3 class="ui dividing header">C.C <scan style="font-size : 10px;">(Chief Complaint , 수혜자가 불편하신 곳)</scan></h3>
 
             <form id="CCform">
                 <div class="ui grid">
