@@ -17,13 +17,13 @@ $('.diagnosisWaitings').on('click', () => {
         cache: false,
     }).done(result => {
 
-        console.log(result);
+        // console.log(result);
         for(let i = 0; i < result.length; i++) {
             $('#tableBody').append(
                 `<tr id=${result[i].chart_id} class="table-content">
-                       <td id=${result[i].chart_id}>${result[i].chart_id}</td>
-                       <td id=${result[i].chart_id}>${result[i].name}</td>
-                       <td id=${result[i].chart_id}>${result[i].birth}</td>
+                    <td id=${result[i].chart_id}>${result[i].chart_id}</td>
+                    <td id=${result[i].chart_id}>${result[i].name}</td>
+                    <td id=${result[i].chart_id}>${result[i].birth}</td>
                 </tr>`
 
             )}
@@ -60,7 +60,8 @@ $('.waitingTab').on('click', () => {
                        <td id=${result[i].chart_id}>${result[i].birth}</td>
                 </tr>`
 
-            )}
+            )
+        }
     });
 
     $(".completeTab").removeClass("active");
@@ -93,7 +94,8 @@ $('.completeTab').on('click', () => {
                        <td id=${result[i].chart_id}>${result[i].birth}</td>
                 </tr>`
 
-            )}
+            )
+        }
     });
 
     $(".waitingTab").removeClass("active");

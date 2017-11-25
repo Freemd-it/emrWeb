@@ -14,3 +14,4 @@ import './vendors/js/semantic.js';
 import './resources/js/receipt.js';
 import './resources/js/prediagnosis.js'
 import './resources/js/originalDiagnosis.js'
+import './resources/js/pharmacy.js'

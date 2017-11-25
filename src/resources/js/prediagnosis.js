@@ -40,6 +40,7 @@ $('#waitingList').on('click', () => {
 
 $(document).on('click', '.table-content', (e) => {
 
+    console.log(e.target);
     const docs = {
         chartNumber: e.target.id,
     };
@@ -56,6 +57,8 @@ $(document).on('click', '.table-content', (e) => {
         $('#preName').val(result.patient.name);
 
         $('#getPastCC').attr('disabled', false);
+        $('#pastDiagnosisRecord').attr('disabled', false);
+        $('#vitalSign').attr('disabled', false);
     })
 
 
